@@ -1,0 +1,32 @@
+extends layout 
+block content
+    h1 Sign up for Chib Link
+    if errors 
+        h2 Please fix the following errors
+        ul 
+            for error in errors
+                li=error.msg
+    form(action="", method="post")
+        .form-group 
+            label(for="username") Username (spaces will turn to underscores by default)
+            input#username.form-control(type="text", name="username" required placeholder='epic_user123' maxlength=20) 
+        .form-group 
+            label(for="email") Email 
+            input#email.form-control(type="email" name='email' required placeholder='email@email.com')
+        .form-group 
+            label(for="display_name") Display name (optional, default is username)
+            input#display_name.form-control(type="text", name="displayName" placeholder='john smith in da house' maxlength=25)
+        .form-group 
+            label(for="description") Description (optional)
+            textarea#description.form-control(name="description", cols="30", rows="3", maxlength="150")
+        .form-group 
+            label(for="password") Password 
+            input.form-control#password(type="password" name='password' minlength=8 required)
+        .form-group 
+            label(for="confirm_password") Confirm password 
+            input#confirm_password.form-control(type="password", name="confirm_password" minlength=8 required)
+        .form-check 
+                input#agree-to-terms.form-check-input(type="checkbox" required)
+                label.form-check-label(for="agree-to-terms") I understand, read, and agree to the 
+                    a(href="/terms-of-service") Terms of Service 
+        button.btn.btn-success(type="submit") Confirm

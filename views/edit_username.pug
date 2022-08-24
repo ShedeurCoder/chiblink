@@ -1,0 +1,8 @@
+extends layout
+block content 
+    h1 edit username
+    form(action="", method="post" onsubmit='return confirm("Are you sure you want to change your username? Your URL will change!")')
+        .form-group
+            label(for="username") New username (YOUR CHIBLINK URL WILL CHANGE):
+            input#username.form-control(type="text", name="username" required value=user.username)
+        button.btn.btn-primary(type="submit") Submit

@@ -1,0 +1,12 @@
+extends layout 
+block content 
+    h1 Delete account 
+    h2.bg-danger THIS WILL DELETE YOUR ACCOUNT. THIS ACTION CANNOT BE UNDONE.
+    form(action="", method="post" onsubmit="return confirm('Are you sure you want to delete your account? THIS ACTION CANNOT BE UNDONE!')")
+        .form-group 
+            label(for="username") Username:
+            input#username.form-control(type="text", name="username" required placeholder='Username')
+        .form-group 
+            label(for="password") Password:  
+            input#password.form-control(type="password", name="password" required placeholder='Password')
+        button.btn.btn-danger(type="submit") Submit

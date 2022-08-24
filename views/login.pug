@@ -1,0 +1,11 @@
+extends layout 
+block content 
+    h1 Log in to Chib Link 
+    form(action="", method="post")
+        .form-group
+            label(for="username") Username 
+            input#username.form-control(type="text", name="username" required placeholder='epic_user123')
+        .form-group
+            label(for="password") Password 
+            input#password.form-control(type="password", name="password" required)
+        button.btn.btn-success(type="submit") Confirm

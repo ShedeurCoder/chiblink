@@ -1,0 +1,73 @@
+extends layout
+block content
+    iframe.float-right.d-none.d-md-block(src=`/${user.username}`, frameborder="0" height='600' width='400') 
+    h1 Links
+    each link in links 
+        .link-list.p-1.mb-3 
+            h3.text-center(style=`background-color: ${link.bg}; color: ${link.text}; width: fit-content; padding-inline: 1%; padding-block: 0.5%`)=link.title
+            a.text-light(href=link.link target='_blank')=link.link
+            br
+            span=`Background color: ${link.bg} `
+                span.color-preview(style=`background-color: ${link.bg}`)
+            p=`Font color: ${link.text} `
+                span.color-preview(style=`background-color: ${link.text}`)
+            
+            button.mr-3.btn.btn-primary(type='button' data-toggle='modal' data-target='#updateLink' onclick=`addModalData('${link.id}', '${link.title}', '${link.link}', '${link.bg}', '${link.text}')`) Edit link
+            form(action="/deletelink", method="post" style='display: inline')
+                input(type="hidden", name='linkID' value=link._id)
+                button.btn.btn-danger(type="submit") Delete link
+    br
+    button.btn.btn-primary(type='button' data-toggle='modal' data-target='#addLink') Add link
+
+    //- Edit link modal
+    .modal.fade#updateLink 
+        .modal-dialog 
+            .modal-content.bg-dark 
+                .modal-header 
+                    h3 Edit link
+                    button.close.text-light(type='button' data-dismiss='modal') &times;
+                .modal-body 
+                    form(action="/updatelink", method="post" onchange='updateLinkPreview()')
+                        input#linkId(type="hidden", name="linkId")
+                        .form-group 
+                            label(for="uTitle") Link title: 
+                            input#uTitle.form-control(type="text", name='title', placeholder='Link title' required onkeyup='updateLinkPreview()') 
+                        .form-group 
+                            label(for="uLink") Link: 
+                            input#uLink.form-control(type='url' name='link' placeholder='Link' required onkeyup='addLinkPreview()')
+                        .form-group 
+                            label(for="uBg") Background color: 
+                            input#uBg.form-control(type="color", name="bg")
+                        .form-group 
+                            label(for="uText") Font color: 
+                            input#uText.form-control(type="color", name="text")
+                        #updateLinkPreview.text-center.p-2.mb-1 
+                            a#updateLinkPreviewLink(target="_blank") 
+                                h3#updateLinkPreviewTitle
+                        button.btn.btn-outline-primary(type="submit") Save
+
+    //- Add link modal
+    .modal.fade#addLink 
+        .modal-dialog 
+            .modal-content.bg-dark 
+                .modal-header 
+                    h3 Add link
+                    button.close.text-light(type='button' data-dismiss='modal') &times;
+                .modal-body 
+                    form(action="/addlink", method="post" onchange='addLinkPreview()')
+                        .form-group 
+                            label(for="title") Link title:
+                            input#title.form-control(type="text", name="title" placeholder='Link title' required onkeyup='addLinkPreview()')
+                        .form-group 
+                            label(for="link") Link:
+                            input#link.form-control(type="url", name="link" placeholder='Link' required value='https://' onkeyup='addLinkPreview()')
+                        .form-group 
+                            label(for="bg") Background color:
+                            input#bg.form-control(type="color", name="bg" value="#FFFFFF")
+                        .form-group 
+                            label(for="text") Font color: 
+                            input#text.form-control(type="color", name="text" value="#000000")
+                        #addLinkPreview.text-center.p-2.mb-1 
+                            a#addLinkPreviewLink(target="_blank") 
+                                h3#addLinkPreviewTitle
+                        button.btn.btn-outline-primary(type="submit") Save

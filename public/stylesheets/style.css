@@ -1,0 +1,40 @@
+.logo {
+  height: 100px
+}
+.nav-link {
+  font-size: 1.5rem;
+}
+.navbar-dark {
+  background: #1e1e1e;
+}
+.homeh1 {
+  font-size: 6rem; 
+  font-family: 'Oleo Script Swash Caps', cursive;
+}
+body {
+  padding: 12px;
+}
+p, a {
+  font-size: 1.2rem;
+}
+#addLinkPreview, #updateLinkPreview, .page-link {
+  opacity: 90%
+}
+#addLinkPreview:hover, #updateLinkPreview:hover, .page-link:hover {
+  opacity: 100%
+}
+#addLinkPreview a:hover, #updateLinkPreview a:hover, a.page-link-a:hover {
+  text-decoration: none;
+}
+.color-preview {
+  height: 20px;
+  width: 20px;
+  display: inline-block
+}
+span {
+  font-size: 1.2rem;
+}
+.account-main a {
+  font-size: 1.3rem;
+  margin: 3%;
+}

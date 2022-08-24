@@ -1,0 +1,8 @@
+extends layout
+block content 
+    h1 Edit email
+    form(action="", method="post")
+        .form-group
+            label(for="email") New email:
+            input#email.form-control(type="email", name="email" required value=user.email) 
+        button.btn.btn-primary(type="submit") Submit

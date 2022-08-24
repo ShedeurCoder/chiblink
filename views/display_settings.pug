@@ -1,0 +1,20 @@
+extends layout
+block content 
+    h1 Edit display 
+    form(action="", method="post")
+        .form-group
+            label(for="displayName") Display name:
+            input#displayName.form-control(type="text", name="displayName" value=user.displayName maxlength=25)
+        .form-group 
+            label(for="description") Description: 
+            textarea#description.form-control(name="description", cols="30", rows="3" maxlength="150")=user.description 
+        .form-group 
+            label(for="bg") Background color: 
+            input#bg.form-control(type="color", name="bg" value=user.bg onchange='updateUserPreview()')
+        .form-group 
+            label(for="text") Font color: 
+            input#text.form-control(type='color' name='text' value=user.text onchange='updateUserPreview()') 
+        #userPreview(style=`background-color: ${user.bg}; padding: 10px`) 
+            h3#userPreviewText(style=`color: ${user.text}`) Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias deserunt nesciunt saepe illum perferendis, animi voluptatibus sapiente unde excepturi.
+        br
+        button.btn.btn-primary(type="submit") Save
